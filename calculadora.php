@@ -46,10 +46,17 @@
             $consulta = $conn->prepare("SELECT * FROM calculos WHERE IdUsuario =:usuario");
             $consulta->bindParam("usuario", $_SESSION['IdUsuario'], PDO::PARAM_STR); 
             $consulta ->execute();
+            $cont = 0;
             while($calculo=$consulta->fetch(PDO::FETCH_ASSOC)){
                 echo "<p>
                         ".$calculo['fecha'].": ".$calculo['numero1']." + ".$calculo['numero2']." = ".$calculo['resultado']
                       ."</p>";
+                $cont ++;
+            }
+            if($cont ==0){
+                echo "<p>
+                        todavia no tenes ninguna cuenta, que esperas para hacer una?
+                        </p>";
             }
         ?>
         <hr>

@@ -19,10 +19,11 @@ if(isset($_POST['login'])){
         </script>';
     }
     else{
-        if($pass == $resultado['pass']){
+ 
+        if(password_verify($pass,$resultado['pass'])){
             $_SESSION['IdUsuario'] = $resultado['ID'];
             $_SESSION['username'] = $resultado['username'];
-            header("Location:calculadora.php");
+           header("Location:calculadora.php");
         }
         else{
             echo'<script type="text/javascript">
